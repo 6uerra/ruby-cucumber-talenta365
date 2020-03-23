@@ -1,6 +1,6 @@
-Feature: Card
+Feature: Cart
         @login
-        Scenario: Add to card
+        Scenario: Add to cart
             Given  I want to buy a product from anywhere in the store
               And I select the product of my choice
              Then I add it to the shopping cart

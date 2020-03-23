@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'faker'
 
 module Login
   @@id_btn_user = 'menuUser'
