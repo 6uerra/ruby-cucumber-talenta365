@@ -1,0 +1,15 @@
+GlobalVars:
+  AllowedVariables:
+    - $driver
+    - $user
+    - $password
+
+Metrics/LineLength:
+  Max: 130
+
+AllCops:
+  Exclude:
+    - 'features/support/env.rb'
+
+Style/Documentation:
+  Enabled: false
