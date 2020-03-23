@@ -8,6 +8,7 @@ module Helpers
     $driver.current_url.should eql? url
   end
 
+  #this method is used on occasions to perform click retries when some data loading screen is presented
   def wait_and_click_element(access_type, access_name)
     attempts = 0
     is_clickeable = false
@@ -23,6 +24,7 @@ module Helpers
     end
   end
 
+  #validates that one or more elements are present before any action is taken 
   def wait_displays(type_tag,elements, time)
     if elements.class == String 
       wait_for_element_to_display(type_tag,elements, time )
@@ -39,6 +41,7 @@ module Helpers
     $driver.find_elements(type_tag, elements)
   end
 
+  #after each test the browser is cleaned to ensure independence of the cases
   def clear_data_browser
     $driver.manage.delete_all_cookies
     $driver.local_storage.clear
