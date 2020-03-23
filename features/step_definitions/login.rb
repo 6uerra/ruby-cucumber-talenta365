@@ -14,6 +14,10 @@ Then 'I enter my username and password' do
     enter_data $username, $password
 end
 
+Then 'I enter my username {string} and password {string}' do |user,password|
+    enter_data user, password
+end
+
 And 'I validate that the account is correct' do
     validate_login
 end

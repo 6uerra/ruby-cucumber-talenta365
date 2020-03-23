@@ -9,23 +9,24 @@ module Login
   @@id_text_user= 'menuUserLink'
   
   def enter_session
-    wait_displays(:id,@@id_btn_user, 10)
-    click(:id,@@id_btn_user)
+    wait_displays(:id,@@id_btn_user, 15)
+    wait_and_click_element(:id,@@id_btn_user)
   end
 
   #You enter the data that is received by parameters for the login
   def enter_data (user,password)
-    wait_displays(:name,%w[username password], 10)
+    wait_displays(:name,%w[username password], 30)
     wait_for_element_to_enable(:name,@@name_txt_user_name,20)
     wait_for_element_to_enable(:name,@@name_txt_password,20)
     enter_text(:name,user,@@name_txt_user_name)
     enter_text(:name,password,@@name_txt_password)
-    wait_for_element_to_enable(:id,@@id_btn_sing_in,10)
-    wait_and_click_element(:id,@@id_btn_sing_in)
+  
   end
 
   #It compares if the user entered was correctly logged in
   def validate_login
+    wait_for_element_to_enable(:id,@@id_btn_sing_in,10)
+    wait_and_click_element(:id,@@id_btn_sing_in)
     wait_displays(:id,@@id_text_user,10)
     sleep 7 if get_element_text(:id,@@id_text_user) == '' 
     $username.should eq get_element_text(:id,@@id_text_user)
