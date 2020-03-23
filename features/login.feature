@@ -1,7 +1,6 @@
-Feature: Creacte user
+Feature: login user
         @sign_in
-        Scenario:
-            Given I enter in advantage
+        Scenario: Login session
             Given I want to log in
              Then I enter my username and password
               And I validate that the account is correct

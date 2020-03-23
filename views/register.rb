@@ -2,6 +2,7 @@
 require 'faker'
 
 module Register
+  #For the elements I use the structure of {access_type}_{type}__{name_element}
   @@id_btn_user = 'menuUser'
   @@link_create_user =  'CREATE NEW ACCOUNT'
   @@name_txt_username = 'usernameRegisterPage'
@@ -31,17 +32,14 @@ module Register
   @@xp_txt_get_phone = '(//label[@class="ng-binding"][contains(.,"")])[7]'
   @@xp_txt_sign_out = '//label[@class="option roboto-medium ng-scope"][contains(.,"Sign out")]'
 
-
   def register_user
-   
     wait_displays(:id,@@id_btn_user, 10)
     click(:id,@@id_btn_user)
     wait_displays(:link,@@link_create_user, 10)
     wait_and_click_element(:link,@@link_create_user)
-
   end
 
-
+  #All data required for registration is entered dynamically
   def fill_data_user
     load_data_fill
     wait_displays(:name,@@all_fill,7)
@@ -59,13 +57,10 @@ module Register
     check_checkbox(:name,@@name_check_agree)
     wait_and_select_option(:name,:text, @@country,@@name_lts_country)
     click(:id,@@id_btn_register)
-
-    
-    
   end
-
+  
+  #It validates that all data entered are the same as those submitted after registration
   def validate_register
-
     wait_displays(:id,@@id_text_user,10)
     sleep 3 if get_element_text(:id,@@id_text_user) == ''
     $username.should eq get_element_text(:id,@@id_text_user)
@@ -88,8 +83,8 @@ module Register
 
   private
 
+  #The faker gem is used to generate random data and store it in a variable for later comparison
   def load_data_fill
-
     $username =Faker::Name.middle_name+Faker::Name.initials
     @@email= Faker::Internet.email
     $password = (Faker::Alphanumeric.alphanumeric 8 ) + "A1"
@@ -101,9 +96,9 @@ module Register
     @@address=Faker::Address.street_address
     @@state=Faker::Name.initials
     @@code=Faker::Number.digit
-
   end
-
+  
+  #Method is created to make retries because the dropdown of the country takes a long time to load the data 
   def wait_and_select_option(*values)
     @@arg = values
     attempts = 0
@@ -119,8 +114,6 @@ module Register
       end
     end
   end
-
-
 
 end
 World(Register)
