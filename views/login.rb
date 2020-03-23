@@ -15,7 +15,6 @@ module Login
   end
 
   def enter_data (user,password)
-
     wait_displays(:name,%w[username password], 10)
     wait_for_element_to_enable(:name,@@name_txt_user_name,20)
     wait_for_element_to_enable(:name,@@name_txt_password,20)
@@ -23,7 +22,6 @@ module Login
     enter_text(:name,password,@@name_txt_password)
     wait_for_element_to_enable(:id,@@id_btn_sing_in,10)
     wait_and_click_element(:id,@@id_btn_sing_in)
-
   end
 
   def validate_login
@@ -31,8 +29,6 @@ module Login
     sleep 7 if get_element_text(:id,@@id_text_user) == '' 
     $username.should eq get_element_text(:id,@@id_text_user)
   end
-
-
-
+  
 end
 World(Login)

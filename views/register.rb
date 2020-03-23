@@ -31,14 +31,11 @@ module Register
   @@xp_txt_get_phone = '(//label[@class="ng-binding"][contains(.,"")])[7]'
   @@xp_txt_sign_out = '//label[@class="option roboto-medium ng-scope"][contains(.,"Sign out")]'
 
-
   def register_user
-   
     wait_displays(:id,@@id_btn_user, 10)
     click(:id,@@id_btn_user)
     wait_displays(:link,@@link_create_user, 10)
     wait_and_click_element(:link,@@link_create_user)
-
   end
 
 
@@ -59,13 +56,9 @@ module Register
     check_checkbox(:name,@@name_check_agree)
     wait_and_select_option(:name,:text, @@country,@@name_lts_country)
     click(:id,@@id_btn_register)
-
-    
-    
   end
 
   def validate_register
-
     wait_displays(:id,@@id_text_user,10)
     sleep 3 if get_element_text(:id,@@id_text_user) == ''
     $username.should eq get_element_text(:id,@@id_text_user)
@@ -89,7 +82,6 @@ module Register
   private
 
   def load_data_fill
-
     $username =Faker::Name.middle_name+Faker::Name.initials
     @@email= Faker::Internet.email
     $password = (Faker::Alphanumeric.alphanumeric 8 ) + "A1"
@@ -101,7 +93,6 @@ module Register
     @@address=Faker::Address.street_address
     @@state=Faker::Name.initials
     @@code=Faker::Number.digit
-
   end
 
   def wait_and_select_option(*values)
@@ -119,8 +110,6 @@ module Register
       end
     end
   end
-
-
 
 end
 World(Register)

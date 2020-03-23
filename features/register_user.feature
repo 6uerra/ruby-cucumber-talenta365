@@ -1,6 +1,6 @@
 Feature: Creacte user
 
-        Scenario:
+        Scenario: New register
             Given I enter in advantage
               And I want to register
              Then I fill out all the data
